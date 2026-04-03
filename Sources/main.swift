@@ -250,8 +250,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 // Detach from terminal so closing it won't kill the app
 if CommandLine.arguments.last != "--daemon" {
+    // Resolve full path of the binary (handles symlinks and PATH lookup)
+    let selfPath = shell("which \(CommandLine.arguments[0]) 2>/dev/null || echo \(CommandLine.arguments[0])").trimmingCharacters(in: .whitespacesAndNewlines)
+    let resolved = shell("readlink -f \(selfPath) 2>/dev/null || echo \(selfPath)").trimmingCharacters(in: .whitespacesAndNewlines)
     let process = Process()
-    process.executableURL = URL(fileURLWithPath: CommandLine.arguments[0])
+    process.executableURL = URL(fileURLWithPath: resolved)
     process.arguments = ["--daemon"]
     process.standardOutput = FileHandle.nullDevice
     process.standardError = FileHandle.nullDevice
