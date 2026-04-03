@@ -1,4 +1,4 @@
-# wireguard-monitor
+# wireguard-monitor-menubar
 
 A lightweight macOS menu bar app that shows your WireGuard VPN usage (download/upload) at a glance.
 
@@ -16,21 +16,21 @@ A lightweight macOS menu bar app that shows your WireGuard VPN usage (download/u
 ### Homebrew
 
 ```bash
-brew install elmanlucas/tap/wireguard-monitor
+brew install elmanlucas/tap/wireguard-monitor-menubar
 ```
 
 ### Manual
 
 ```bash
-git clone https://github.com/elmanlucas/wireguard-monitor.git
-cd wireguard-monitor
+git clone https://github.com/elmanlucas/wireguard-monitor-menubar.git
+cd wireguard-monitor-menubar
 make install
 ```
 
 ## Usage
 
 ```bash
-wireguard-monitor
+wireguard-monitor-menubar
 ```
 
 The app runs in the menu bar. Click the stats to see detailed info. Select **Quit** to exit.
@@ -38,7 +38,7 @@ The app runs in the menu bar. Click the stats to see detailed info. Select **Qui
 ### Start on login
 
 ```bash
-brew services start wireguard-monitor
+brew services start wireguard-monitor-menubar
 ```
 
 Or manually copy the LaunchAgent:
