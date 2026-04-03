@@ -1,4 +1,5 @@
 import AppKit
+import Darwin
 
 // MARK: - Data Types
 
@@ -246,6 +247,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 }
 
 // MARK: - Main
+
+// Detach from terminal so closing it won't kill the app
+if CommandLine.arguments.last != "--daemon" {
+    let process = Process()
+    process.executableURL = URL(fileURLWithPath: CommandLine.arguments[0])
+    process.arguments = ["--daemon"]
+    process.standardOutput = FileHandle.nullDevice
+    process.standardError = FileHandle.nullDevice
+    try? process.run()
+    exit(0)
+}
 
 let app = NSApplication.shared
 app.setActivationPolicy(.accessory)
